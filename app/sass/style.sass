@@ -1,0 +1,389 @@
+@import reset
+@import fonts
+@import mixins
+
+$basecolor: #000
+$basefsize: 1rem
+$basefont: "Roboto-Light", sans-serif
+$acolor: #435993
+$acolor-hover: #1c1c1c
+$bodybg: #fff
+$btnbg: #435993
+$formwidth: 32.5rem
+$formbrdcolor: #e5e5e5
+$formcolor: #c8c8c8
+$checkbox-width: 1.125rem
+$checkbox-bg: #435993
+
+body 
+    background: $bodybg
+    font-family: $basefont
+    font-size: $basefsize
+
+a
+    color: $acolor
+    text-decoration: none
+    &:hover, &:focus
+        color: $acolor-hover
+        outline:none
+
+.container
+    width: 90%
+    +breakpoint(large)
+        width: 768px
+    margin: 0 auto
+    
+header
+    font-size: $basefsize * .875
+    position: relative
+    padding: 1.0625rem 0 .875rem
+
+    nav
+        text-align: center
+        
+        ul
+            margin: 0
+            padding: 0
+            list-style: none
+            +breakpoint(small)
+                display: none
+            
+            
+            li
+                display: inline-block
+                +breakpoint(small)
+                    display: block
+                    text-align: center
+                    padding: .5rem
+                margin: 0
+                padding: 0
+                
+                a
+                    display: block
+                    padding: 1rem 1.9375rem
+        .toogle
+            display: none
+            cursor: pointer
+            +border-radius(.125rem)
+            +breakpoint(small)
+                display: block
+                width: 2rem
+                height: 2rem
+                background: #ccc
+                padding: .5rem .25rem
+            .bar
+                height: .125rem
+                margin-bottom: .25rem
+                background: #435993
+                display: block
+            &:hover
+            background: $checkbox-bg
+            &:hover .bar
+                background: #fff
+            
+                    
+    &:before
+        display: block
+        content: ""
+        position: absolute
+        width: 100%
+        height: 160px
+        background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), url(../img/bg.jpg)
+        background-position: center 0
+        background-size: cover
+        bottom: -160px
+        left: 0
+        
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+        &:before
+            background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), url(../img/bg2x.jpg)
+                        
+                
+main
+    position: relative
+    border-top: 1px solid #d9d9d9
+    padding-top: 7.0625rem
+                
+h1
+    text-align: center
+    font-size: $basefsize * 4.375
+    font-family: "Roboto Thin", sans-serif
+    font-weight: normal
+    margin-bottom: 3.625rem
+    
+h2
+    font-size: $basefsize * 1.875
+    font-family: 'Roboto Thin', sans-serif
+    font-weight: normal
+
+.form-block
+    padding-top: 4.375rem
+    padding-bottom: 3rem
+    h2
+        text-align: center
+        padding-bottom: 1.125rem
+    p
+        margin-bottom: 1.5625rem
+    input
+        &[type='text'], &[type='email'], &[type='password']
+            width: 67.5325%
+            font-size: 1rem
+            +breakpoint(large)
+                width: $formwidth
+                font-size: 1.5rem
+            +border-radius(.25rem)
+            border: 1px solid $formbrdcolor
+            font-family: $basefont
+            color: $formcolor
+            padding: .9375rem
+            text-align: center
+            
+
+            +placeholder
+                color: $formcolor
+
+            &:focus
+                +placeholder
+                    color: transparent
+
+        &[type='checkbox']
+            position: absolute
+            left: -9999px
+            
+            &+ label
+                position: relative
+                display: block
+                padding: .375rem 0 .125rem ($checkbox-width + .75rem)
+                cursor: pointer
+                
+                &:before
+                  display: block
+                  content: ""
+                  position: absolute
+                  left: 0
+                  top: 50%
+                  margin: (-$checkbox-width/2) 0 0
+                  width: $checkbox-width
+                  height: $checkbox-width
+                  background: #fff
+                  border: 1px solid $checkbox-bg
+                  +border-radius(.125rem)
+                    
+
+            &:checked + label
+                &:before
+                  background: $checkbox-bg;
+
+    
+                
+
+    textarea
+        width: 67.5325%
+        font-size: 1rem
+        +breakpoint(large)
+            width: $formwidth
+            font-size: 1.5rem
+        height: 11.25rem
+        +border-radius(.25rem)
+        border: 1px solid $formbrdcolor
+        font-family: $basefont
+        color: $formcolor
+        padding: .9375rem
+        
+        
+        +placeholder
+            color: $formcolor
+        
+        &:focus
+            +placeholder
+                color: transparent
+    .custom-select
+        position: relative
+        width: 67.5325%
+        font-size: 1rem
+        +breakpoint(large)
+            width: 322px
+            font-size: 1.5rem
+        +border-radius(.25rem)
+        border: 1px solid $formbrdcolor
+        font-family: $basefont
+        color: $formcolor
+        margin: 0 auto 1.5625rem 
+        
+        select
+            display: none
+        
+    .select-selected
+        
+        &:after
+          position: absolute
+          content: ""
+          top: 20px
+          +breakpoint(large)
+            top: 26px
+          right: 20px
+          width: 13px
+          height: 8px
+          background:url(../img/corner.svg) center top no-repeat
+    .select-selected.select-arrow-active:after
+          +transform(rotate(180deg))
+        
+    .select-items div, .select-selected
+          color: $formcolor
+          padding: .9375rem
+          border: 1px solid transparent
+          border-bottom-color: $formbrdcolor
+          cursor: pointer
+          margin-bottom: -1px
+
+    .select-items
+          position: absolute
+          background-color: #fff
+          color: $formcolor
+          top: 100%
+          left: 0
+          right: 0
+          z-index: 99
+          border-left: 1px solid $formbrdcolor
+          border-right: 1px solid $formbrdcolor
+
+    .select-hide
+          display: none
+
+    .select-items div:hover, .same-as-selected
+          color: #000
+        
+    .btn
+        padding: 1rem 2rem
+        background: $btnbg
+        border: 1px solid $btnbg
+        +border-radius(.5rem)
+        color: #fff
+        font-size: $basefsize
+        
+.personal_info
+    text-align: center
+    background:url(../img/icon-info.svg) center top no-repeat
+    
+    h2
+        padding-bottom: 2.8125rem
+    
+
+.experience
+    background:url(../img/icon-exp.svg) center top no-repeat
+    padding-bottom: 6.375rem
+        
+    ul
+        margin: 0
+        padding: 1.5rem 0
+        list-style: none
+        +breakpoint(large)
+            column-count: 3
+
+        li
+            margin-bottom: .5rem
+
+.js
+    background:url(../img/icon-js.svg) center top no-repeat
+    padding-bottom: 6.25rem
+        
+    h2
+        padding-bottom: 2.8125rem
+        
+    .js-title
+        +flex
+        align-items: flex-end
+        padding-bottom: 1rem
+
+        div
+            width: 25%
+            max-width: 25%
+            font-size: .6875rem
+            +breakpoint(large)
+                font-size: .8125rem
+            position: relative
+            padding-bottom: 6px
+                        
+            &:last-child
+                text-align: right
+                padding-right: 0
+                &::after
+                    left: auto
+                    right: 0
+                    height: 7px
+                    bottom: -7px
+            &:nth-child(2)::after
+                    height: 16px
+                    bottom: -16px
+            &:nth-child(3)::after
+                    height: 13px
+                    bottom: -13px
+            &:after
+                display: block
+                height: 20px
+                width: 1px
+                content: ''
+                background:url(../img/dots.png) 0 0 repeat-y
+                position: absolute
+                left: 0
+                bottom: -20px
+            
+
+    #js-slider
+        display: none
+    
+    #slider
+        position: relative
+    
+    .ui-widget-content .ui-state-default
+        background:url(../img/slider-handle.svg) center 0 no-repeat
+        background-size: cover
+        border: none
+        border-radius: 0
+        width: 23px
+        height: 26px
+        
+        &:hover, &:focus
+            outline: none
+        
+    .ui-widget.ui-widget-content
+        border: none
+        background:url(../img/range.svg) 0 0 no-repeat
+        border-radius: 0
+    
+    .ui-slider-horizontal .ui-slider-range-min
+        background:url(../img/range-active.svg) 0 0 no-repeat
+        border-radius: 0
+        overflow: hidden
+        
+        +breakpoint(large)
+            &::after
+                    display: block
+                    height: 14px
+                    width: 191px
+                    content: ''
+                    border-left: 1px solid #fff
+                    border-right: 1px solid #fff
+                    position: absolute
+                    left: 192px
+                    top: 0
+        
+    .ui-slider-horizontal .ui-slider-handle
+        top: 19px
+        margin-left: -12px
+
+    
+.about
+    text-align: center
+    background:url(../img/icon-about.svg) center top no-repeat
+        
+    p
+        +breakpoint(large)
+            width: $formwidth
+            margin: 0 auto
+        padding-bottom: 2.5rem
+        
+.submit
+    text-align: center
+    padding-top: 1.375rem
+    padding-bottom: 4.625rem

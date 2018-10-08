@@ -1,0 +1,53 @@
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  border-radius: $radius
+
+=placeholder
+    &::-webkit-input-placeholder
+        @content
+    &:-moz-placeholder
+        @content
+    &::-moz-placeholder
+        @content
+    &:-ms-input-placeholder
+        @content
+
+=breakpoint($point)
+  @if $point == large
+    @media (min-width: 768px)
+        @content
+  @else if $point == small
+    @media (max-width: 767.99px)
+        @content
+        
+=transform($transforms)
+    -moz-transform: $transforms
+    -o-transform: $transforms
+    -ms-transform: $transforms
+    -webkit-transform: $transforms
+    transform: $transforms
+
+=linear-gradient-vertical($from, $to)
+    background: $to
+    background: -moz-linear-gradient(top, $from 0%, $to 100%)
+    background: -webkit-linear-gradient(top, $from 0%,$to 100%)
+    background: -o-linear-gradient(top, $from 0%,$to 100%)
+    background: linear-gradient(to bottom, $from 0%,$to 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$from}, endColorstr=#{$to})
+
+=linear-gradient-gorizontal($from, $to)
+    background: $to
+    background: -moz-linear-gradient(left, $from 0%, $to 100%)
+    background: -webkit-linear-gradient(left, $from 0%,$to 100%)
+    background: -o-linear-gradient(left, $from 0%,$to 100%)
+    background: linear-gradient(to right, $from 0%,$to 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#{$from}, endColorstr=#{$to})
+
+=flex()
+    display: -webkit-box
+    display: -moz-box
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
